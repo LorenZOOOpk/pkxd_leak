@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Présentation d'images</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		/* CSS pour le conteneur de la présentation */
+		.presentation-container {
+			width: 100%;
+			height: 500px;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		/* CSS pour les flèches de navigation */
+		.arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(50%);
+			font-size: 150px;
+			cursor: pointer;
+			z-index: 1;
+		}
+		
+		.arrow.left {
+			left: 20px;
+		}
+		
+		.arrow.right {
+			right: 20px;
+		}
+		
+		/* CSS pour les images */
+		.presentation-img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+		
+		.presentation-img.active {
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="presentation-container">
+		<img src="1.jpg" alt="1" class="presentation-img active">
+		<img src="2.jpg" alt="2" class="presentation-img">
+		<img src="3.jpg" alt="3" class="presentation-img">
+		<img src="4.jpg" alt="4" class="presentation-img">
+		<img src="5.jpg" alt="5" class="presentation-img">
+		<img src="6.jpg" alt="6" class="presentation-img">
+		<img src="7.jpg" alt="7" class="presentation-img">
+		<img src="8.jpg" alt="8" class="presentation-img">
+		<img src="9.jpg" alt="9" class="presentation-img">
+		<img src="10.jpg" alt="10" class="presentation-img">
+		<img src="11.jpg" alt="11" class="presentation-img">
+		<img src="12.jpg" alt="12" class="presentation-img">
+		<img src="13.jpg" alt="13" class="presentation-img">
+		<img src="14.jpg" alt="14" class="presentation-img">
+		<img src="15.jpg" alt="15" class="presentation-img">
+		<img src="16.jpg" alt="16" class="presentation-img">
+		<img src="17.jpg" alt="17" class="presentation-img">
+		<img src="18.jpg" alt="18" class="presentation-img">
+		<img src="19.jpg" alt="19" class="presentation-img">
+		<img src="20.jpg" alt="20" class="presentation-img">
+		<img src="21.jpg" alt="21" class="presentation-img">
+		<img src="22.jpg" alt="22" class="presentation-img">
+		<img src="23.jpg" alt="23" class="presentation-img">
+		<img src="24.jpg" alt="24" class="presentation-img">
+		<img src="25.jpg" alt="25" class="presentation-img">
+		<img src="26.jpg" alt="26" class="presentation-img">
+		<!-- flèches de navigation -->
+	<div class="arrow left">&#8249;</div>
+	<div class="arrow right">&#8250;</div>
+</div>
+
+<script>
+	// récupération des éléments de la présentation
+	const container = document.querySelector(".presentation-container");
+	const images = container.querySelectorAll(".presentation-img");
+	const leftArrow = container.querySelector(".arrow.left");
+	const rightArrow = container.querySelector(".arrow.right");
+
+	// initialisation de l'index de l'image active
+	let currentImgIndex = 0;
+
+	// fonction pour changer l'image active
+	function setActiveImg(index) {
+		// désactivation de l'ancienne image active
+		images[currentImgIndex].classList.remove("active");
+		// activation de la nouvelle image active
+		images[index].classList.add("active");
+		// mise à jour de l'index de l'image active
+		currentImgIndex = index;
+	}
+
+	// événement de clic sur la flèche gauche
+	leftArrow.addEventListener("click", () => {
+		// calcul de l'index de l'image précédente
+		const newIndex = currentImgIndex === 0 ? images.length - 1 : currentImgIndex - 1;
+		setActiveImg(newIndex);
+	});
+
+	// événement de clic sur la flèche droite
+	rightArrow.addEventListener("click", () => {
+		// calcul de l'index de l'image suivante
+		const newIndex = currentImgIndex === images.length - 1 ? 0 : currentImgIndex + 1;
+		setActiveImg(newIndex);
+	});
+</script>
+</body>
+</html>
